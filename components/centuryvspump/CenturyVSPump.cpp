@@ -193,10 +193,12 @@ namespace esphome
             {
                 // Always going to have at least 1 byte of sensor data
                 uint16_t value = (uint16_t)data[2];
+                ESP_LOGD(TAG, "Read data[2] value %d from page %d, addr %d", value, page, address);
                 if (data.size() == 4)
                 {
                     // But sometimes, we get two bytes
                     value |= (uint16_t)data[3] << 8;
+                    ESP_LOGD(TAG, "Read data[2] value %d from page %d, addr %d", (uint16_t)data[3], page, address);
                 }
                 // Scale the value
                 value /= scale;
